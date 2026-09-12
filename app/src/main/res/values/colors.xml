@@ -1,0 +1,5 @@
+<resources>
+    <color name="smith_black">#151719</color><color name="smith_panel">#202326</color>
+    <color name="smith_text">#E6E8E7</color><color name="smith_muted">#9CA4A7</color>
+    <color name="smith_steel">#6F8792</color><color name="smith_ok">#70927A</color>
+</resources>
