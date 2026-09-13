@@ -39,17 +39,9 @@ jobs:
           python3 tools/gen_iconpack.py --check
           git diff --exit-code
 
-      - name: Lint
-        run: ./gradlew :app:lintDebug
-
-      - name: Tests unitaires
-        run: ./gradlew :app:testDebugUnitTest
-
-      # Compile les tests instrumentés sans les exécuter : détecte les ruptures d'API
-      # sans payer un émulateur à chaque push.
-      - name: Compiler les tests instrumentés
-        run: ./gradlew :app:assembleDebugAndroidTest
-
+      # L'APK est construit et publié AVANT les contrôles qualité. Un avertissement de
+      # lint doit faire échouer le job, pas priver d'un APK installable : sans cet ordre,
+      # une remarque de style suffit à bloquer tout test sur téléphone.
       - name: APK de debug
         run: ./gradlew :app:assembleDebug
 
@@ -59,6 +51,21 @@ jobs:
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
           retention-days: 14
+
+      - name: Lint
+        run: ./gradlew :app:lintDebug
+
+      # `always()` : un lint rouge ne doit pas masquer l'état des tests. Les deux
+      # diagnostics arrivent dans le même run plutôt qu'un par aller-retour.
+      - name: Tests unitaires
+        if: always()
+        run: ./gradlew :app:testDebugUnitTest
+
+      # Compile les tests instrumentés sans les exécuter : détecte les ruptures d'API
+      # sans payer un émulateur à chaque push.
+      - name: Compiler les tests instrumentés
+        if: always()
+        run: ./gradlew :app:assembleDebugAndroidTest
 
       - name: Rapports
         if: failure()
