@@ -104,9 +104,16 @@ android {
         warningsAsErrors = true
         abortOnError = true
         checkDependencies = true
-        // Bruit sans valeur pour ce projet : traductions incomplètes tolérées
-        // tant que fr et en couvrent l'intégralité des chaînes.
-        disable += setOf("GradleDependency", "AndroidGradlePluginVersion")
+        // Contrôles purement consultatifs sur les versions : ils signalent qu'une
+        // version plus récente existe ailleurs, jamais un défaut dans ce code. Avec
+        // `warningsAsErrors`, ils font échouer le CI au rythme des publications de
+        // Google plutôt qu'au rythme des commits — un build vert devient rouge sans
+        // qu'une seule ligne ait changé.
+        //
+        // OldTargetApi : targetSdk 35 est délibéré. C'est le niveau exigé par Play et
+        // le maximum qu'autorise AGP 8.7.3 en compileSdk. À réexaminer en même temps
+        // que la montée vers AGP 8.9+, qui débloque compileSdk 36.
+        disable += setOf("GradleDependency", "AndroidGradlePluginVersion", "OldTargetApi")
     }
 
     packaging {
