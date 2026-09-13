@@ -1,1 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><resources><item drawable="ic_smith"/></resources>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Généré par tools/gen_iconpack.py depuis tools/iconpack.json — ne pas éditer. -->
+<!-- Résolu par nom depuis les launchers tiers : invisible du code, donc de lint. -->
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedResources">
+    <category title="SMITH" />
+        <item drawable="ic_phone" />
+        <item drawable="ic_messages" />
+        <item drawable="ic_camera" />
+        <item drawable="ic_photos" />
+        <item drawable="ic_chrome" />
+        <item drawable="ic_gmail" />
+        <item drawable="ic_calendar" />
+        <item drawable="ic_clock" />
+        <item drawable="ic_settings" />
+        <item drawable="ic_files" />
+        <item drawable="ic_calculator" />
+        <item drawable="ic_maps" />
+        <item drawable="ic_youtube" />
+        <item drawable="ic_play_store" />
+        <item drawable="ic_drive" />
+        <item drawable="ic_spotify" />
+        <item drawable="ic_whatsapp" />
+        <item drawable="ic_signal" />
+        <item drawable="ic_telegram" />
+        <item drawable="ic_chatgpt" />
+        <item drawable="ic_home_assistant" />
+        <item drawable="ic_netflix" />
+</resources>

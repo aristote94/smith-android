@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Thème de fenêtre uniquement : toute l'UI est en Compose. Parent framework
+         (et non AppCompat) pour éviter une dépendance dont rien d'autre n'a besoin. -->
+    <style name="Theme.Smith" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/smith_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

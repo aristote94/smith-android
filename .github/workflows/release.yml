@@ -1,0 +1,87 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag à publier (ex. v0.2.0)"
+        required: true
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: true
+
+      # Sans ce garde-fou, un secret manquant produirait un APK non signé,
+      # publié comme s'il était installable. On échoue avant de construire.
+      - name: Vérifier les secrets de signature
+        env:
+          KEYSTORE: ${{ secrets.SMITH_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.SMITH_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.SMITH_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.SMITH_KEY_PASSWORD }}
+        run: |
+          for name in KEYSTORE STORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Secret manquant : SMITH_$name"
+              exit 1
+            fi
+          done
+
+      - name: Restaurer le keystore
+        env:
+          KEYSTORE: ${{ secrets.SMITH_KEYSTORE_BASE64 }}
+        run: echo "$KEYSTORE" | base64 -d > "$RUNNER_TEMP/smith.jks"
+
+      - name: Lint et tests
+        run: ./gradlew :app:lintRelease :app:testReleaseUnitTest
+
+      - name: APK signé
+        env:
+          SMITH_KEYSTORE_FILE: ${{ runner.temp }}/smith.jks
+          SMITH_KEYSTORE_PASSWORD: ${{ secrets.SMITH_KEYSTORE_PASSWORD }}
+          SMITH_KEY_ALIAS: ${{ secrets.SMITH_KEY_ALIAS }}
+          SMITH_KEY_PASSWORD: ${{ secrets.SMITH_KEY_PASSWORD }}
+        run: ./gradlew :app:assembleRelease
+
+      # Un APK non signé se serait quand même construit si la configuration avait été
+      # ignorée : on le vérifie plutôt que de le supposer.
+      - name: Vérifier la signature
+        run: |
+          apk=$(find app/build/outputs/apk/release -name "*.apk" | head -1)
+          echo "APK : $apk"
+          case "$apk" in *unsigned*) echo "::error::APK non signé"; exit 1 ;; esac
+          "$ANDROID_HOME"/build-tools/35.0.0/apksigner verify --print-certs "$apk"
+
+      - name: Nettoyer le keystore
+        if: always()
+        run: rm -f "$RUNNER_TEMP/smith.jks"
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: app/build/outputs/apk/release/*.apk
+          generate_release_notes: true
+          fail_on_unmatched_files: true

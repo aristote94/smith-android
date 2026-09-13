@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_subtitle">Pack d\'icônes · données de démonstration</string>
+    <string name="home_section_house">Maison</string>
+    <string name="home_section_apps">Pack d\'icônes</string>
+
+    <string name="status_nominal">Tout va bien</string>
+    <string name="status_attention">À surveiller</string>
+    <string name="status_alert">Alerte</string>
+
+    <string name="room_living_room">Salon</string>
+    <string name="room_bedroom">Chambre</string>
+    <string name="room_office">Bureau</string>
+
+    <string name="metric_temperature">%1$s°</string>
+    <string name="metric_humidity">Humidité %1$s %%</string>
+    <string name="metric_power_label">Puissance</string>
+    <string name="metric_power_value">%1$s kW</string>
+    <string name="metric_energy_value">%1$s kWh</string>
+    <string name="metric_cameras_label">Caméras</string>
+    <string name="metric_cameras_value">%1$s / %2$s en ligne</string>
+
+    <string name="format_date_pattern">EEEE d MMMM</string>
+
+    <string name="widget_description">Aperçu quotidien de la maison</string>
+
+    <string name="cd_status">Statut global : %1$s</string>
+    <string name="cd_app_tile">Ouvrir %1$s</string>
+    <string name="cd_app_tile_unavailable">%1$s n\'est pas installée</string>
+    <string name="toast_app_not_installed">%1$s n\'est pas installée</string>
+    <string name="state_loading">Chargement…</string>
+    <string name="state_error">Données indisponibles</string>
+</resources>

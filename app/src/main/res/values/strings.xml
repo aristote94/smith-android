@@ -1,1 +1,44 @@
-<resources><string name="app_name">SMITH</string><string name="widget_description">Aperçu quotidien de la maison</string></resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">SMITH</string>
+
+    <!-- Écran principal -->
+    <string name="home_title" translatable="false">S  M  I  T  H</string>
+    <string name="home_subtitle">Icon pack · demonstration data</string>
+    <string name="home_section_house">House</string>
+    <string name="home_section_apps">Icon pack</string>
+
+    <!-- Statut -->
+    <string name="status_nominal">All clear</string>
+    <string name="status_attention">Needs attention</string>
+    <string name="status_alert">Alert</string>
+
+    <!-- Pièces -->
+    <string name="room_living_room">Living room</string>
+    <string name="room_bedroom">Bedroom</string>
+    <string name="room_office">Office</string>
+
+    <!-- Mesures. %1$s est déjà formaté selon la locale par HomeFormat. -->
+    <string name="metric_temperature">%1$s°</string>
+    <string name="metric_humidity">Humidity %1$s %%</string>
+    <string name="metric_power_label">Power now</string>
+    <string name="metric_power_value">%1$s kW</string>
+    <string name="metric_energy_value">%1$s kWh</string>
+    <string name="metric_cameras_label">Cameras</string>
+    <string name="metric_cameras_value">%1$s / %2$s online</string>
+
+    <!-- Motif de date passé à DateTimeFormatter ; adapté par locale. -->
+    <string name="format_date_pattern">EEEE, MMMM d</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Daily overview of the house</string>
+    <string name="widget_label" translatable="false">SMITH</string>
+
+    <!-- Accessibilité et retours -->
+    <string name="cd_status">Overall status: %1$s</string>
+    <string name="cd_app_tile">Open %1$s</string>
+    <string name="cd_app_tile_unavailable">%1$s is not installed</string>
+    <string name="toast_app_not_installed">%1$s is not installed</string>
+    <string name="state_loading">Loading…</string>
+    <string name="state_error">Data unavailable</string>
+</resources>

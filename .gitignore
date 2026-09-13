@@ -1,5 +1,17 @@
+# Gradle
 /.gradle/
-/.idea/
-/local.properties
 **/build/
+.kotlin/
+
+# IDE
+/.idea/
 *.iml
+/local.properties
+
+# Signature release — ne doit jamais être versionnée
+/keystore.properties
+*.jks
+*.keystore
+
+# Sorties locales
+/captures/

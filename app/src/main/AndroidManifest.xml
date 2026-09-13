@@ -1,13 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application android:allowBackup="true" android:icon="@drawable/ic_smith" android:label="SMITH" android:theme="@style/Theme.Smith">
-        <activity android:name=".MainActivity" android:exported="true">
-            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
-            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="com.novalauncher.THEME"/><category android:name="org.adw.launcher.THEMES"/></intent-filter>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        Aucune permission. L'application ne lit rien, n'écrit rien, ne sort pas du téléphone.
+        Toute permission ajoutée ici doit être justifiée dans la revue de code.
+    -->
+
+    <!-- BEGIN generated queries -->
+    <!-- Généré par tools/gen_iconpack.py depuis tools/iconpack.json — ne pas éditer. -->
+    <queries>
+        <package android:name="com.google.android.dialer" />
+        <package android:name="com.google.android.apps.messaging" />
+        <package android:name="com.google.android.GoogleCamera" />
+        <package android:name="com.google.android.apps.photos" />
+        <package android:name="com.android.chrome" />
+        <package android:name="com.google.android.gm" />
+        <package android:name="com.google.android.calendar" />
+        <package android:name="com.google.android.deskclock" />
+        <package android:name="com.android.settings" />
+        <package android:name="com.google.android.documentsui" />
+        <package android:name="com.google.android.calculator" />
+        <package android:name="com.google.android.apps.maps" />
+        <package android:name="com.google.android.youtube" />
+        <package android:name="com.android.vending" />
+        <package android:name="com.google.android.apps.docs" />
+        <package android:name="com.spotify.music" />
+        <package android:name="com.whatsapp" />
+        <package android:name="org.thoughtcrime.securesms" />
+        <package android:name="org.telegram.messenger" />
+        <package android:name="com.openai.chatgpt" />
+        <package android:name="io.homeassistant.companion.android" />
+        <package android:name="com.netflix.mediaclient" />
+    </queries>
+    <!-- END generated queries -->
+
+    <application
+        android:name=".SmithApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:enableOnBackInvokedCallback="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Smith"
+        tools:targetApi="tiramisu">
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|density|uiMode"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!--
+                Déclaration du pack d'icônes. Format ADW/Nova : c'est celui que lisent
+                Lawnchair, Nova, Niagara, Smart Launcher, Action Launcher et Apex.
+                Un seul jeu de fichiers (appfilter.xml + drawable.xml) sert tous ces launchers.
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.novalauncher.THEME" />
+                <category android:name="com.teslacoilsw.launcher.THEME" />
+                <category android:name="org.adw.launcher.THEMES" />
+                <category android:name="org.adw.launcher.icons.ACTION_PICK_ICON" />
+                <category android:name="com.anddoes.launcher.THEME" />
+                <category android:name="com.gau.go.launcherex.theme" />
+                <category android:name="ch.deletescape.lawnchair.ICONPACK" />
+                <category android:name="app.lawnchair.icons.THEMED_ICON" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.adw.launcher.THEMES" />
+                <action android:name="com.novalauncher.THEME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.teslacoilsw.launcher.THEME"
+                android:value="true" />
         </activity>
-        <receiver android:name=".SmithWidgetProvider" android:exported="true">
-            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
-            <meta-data android:name="android.appwidget.provider" android:resource="@xml/smith_widget_info"/>
+
+        <receiver
+            android:name=".widget.SmithWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/smith_widget_info" />
         </receiver>
     </application>
+
 </manifest>

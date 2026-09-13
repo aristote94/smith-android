@@ -1,5 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="smith_black">#151719</color><color name="smith_panel">#202326</color>
-    <color name="smith_text">#E6E8E7</color><color name="smith_muted">#9CA4A7</color>
-    <color name="smith_steel">#6F8792</color><color name="smith_ok">#70927A</color>
+    <!-- Palette SMITH. Source unique : référencée par Compose, par le widget et par le thème. -->
+    <color name="smith_background">#151719</color>
+    <color name="smith_surface">#202326</color>
+    <color name="smith_surface_variant">#272B2E</color>
+    <color name="smith_outline">#313A3E</color>
+    <color name="smith_text">#E6E8E7</color>
+    <color name="smith_muted">#9CA4A7</color>
+    <color name="smith_steel">#6F8792</color>
+    <color name="smith_ok">#70927A</color>
+    <color name="smith_attention">#C2A25C</color>
+    <color name="smith_alert">#B5695F</color>
+
+    <color name="smith_launcher_background">#151719</color>
 </resources>

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android" android:minWidth="250dp" android:minHeight="110dp"
-    android:minResizeWidth="180dp" android:minResizeHeight="90dp" android:initialLayout="@layout/widget_smith"
-    android:previewLayout="@layout/widget_smith" android:resizeMode="horizontal|vertical" android:widgetCategory="home_screen"
-    android:description="@string/widget_description" android:updatePeriodMillis="0"/>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:description="@string/widget_description"
+    android:initialLayout="@layout/glance_default_loading_layout"
+    android:minWidth="180dp"
+    android:minHeight="110dp"
+    android:minResizeWidth="180dp"
+    android:minResizeHeight="70dp"
+    android:targetCellWidth="3"
+    android:targetCellHeight="2"
+    tools:targetApi="s"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:previewImage="@drawable/ic_launcher_foreground"
+    android:updatePeriodMillis="1800000" />

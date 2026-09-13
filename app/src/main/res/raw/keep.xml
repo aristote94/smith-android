@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    CRITIQUE. Ces ressources ne sont référencées par aucun code : les launchers tiers les
+    résolvent par nom depuis un autre processus. Sans cette liste, `shrinkResources` les
+    supprime en release et le pack d'icônes cesse silencieusement de fonctionner —
+    l'APK debug, lui, continue de marcher, ce qui rend le défaut invisible en test.
+-->
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@xml/appfilter,@xml/drawable,@drawable/iconback_smith,@drawable/iconmask_smith,@drawable/ic_*"
+    tools:shrinkMode="safe" />
